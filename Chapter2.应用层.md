@@ -70,7 +70,7 @@ HTTP是无状态协议，因为HTTP服务器并不保存关于客户的任何信
 
 #### 2.2.3 HTTP报文格式
 
-请求报文
+**请求报文**
 
 ![](F:\Desktop\Typora\Computer-Network\HTTP报文格式.png)
 
@@ -82,7 +82,59 @@ HTTP是无状态协议，因为HTTP服务器并不保存关于客户的任何信
 
 
 
+**响应报文**
 
+状态行 ： 版本、状态码、状态码对应的描述
+
+首部行
+
+空行
+
+实体行
+
+![](F:\Desktop\Typora\Computer-Network\HTTP响应报文.png)
+
+
+
+​         常见状态码和描述： 
+
+200 OK: 表示请求成功。
+
+301 Moved Permanently: 请求的对象已经被永久转移了，新的URL定义在响应报文的Location：首部行中。
+
+400 Bad Request：该请求不能被服务器理解
+
+404 Not Found：被请求的文档不在服务器上
+
+505 HTTP Version Not Supported：服务器不支持请求报文使用的HTTP协议版本
+
+#### 2.2.4  用户与服务器的交互：Cookie
+
+因为HTTP服务器是无状态的，cookie用于Web站点对用户进行跟踪。
+
+#### 2.2.5 Web 缓存
+
+Web缓存器（代理服务器）
+
+假设游览器正在请求对象http://www.someschool.edu/campus.gif,将会发送：
+
+1.浏览器建立一个到Web缓存器的TCP连接，并向Web缓存器中的对象发送一个HTTP请求
+
+2.Web缓存器进行检查，看本地是都存储了该对象副本。若有，Web缓存器就向客户浏览器用HTTP响应报文返回该对象
+
+3.若没有，就打开一个与该对象的初始服务器（如www.someschool.edu）的TCP连接。Web缓存器在这个缓存器到服务器的TCP连接上发送一个对该对象的HTTP请求。收到请求后，初始服务器发送HTTP响应
+
+4.Web缓存器收到该对象，在本地存储空间存储一份副本，并向客户的浏览器用HTTP响应报文发送该副本。
+
+![](F:\Desktop\Typora\Computer-Network\缓存器.png)
+
+
+
+#### 2.2.6 条件GET方法
+
+高速缓存能减少用户感受到的响应时间，但存在缓存器中的对象副本可能是旧的。
+
+HTTP协议中一种**条件GET**方法 机制允许缓存器证实它的对象是最新的。
 
 
 
