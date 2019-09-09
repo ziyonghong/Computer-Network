@@ -198,13 +198,73 @@ P2P文件共享协议BitTorrent。
 
 任何对等方讲允许在数据库中插入新键值对，这样一种分布式数据库被称为分布式散列表（DHT）。
 
+### 2.7 UDP编程
 
+UDPClient.py
 
+```python
+from socket import *
+import sys
+serverName="127.0.0.1"
+serverPort=12003  #端口号写为str时报错：TypeError: an integer is required (got type str)
+clientSocket=socket(AF_INET,SOCK_DGRAM)  #第一个参数指示了地址簇，AF_INET指示底层网络用IP4，第二个参数指示该套接字类型是UDP套接字
+message=input('Input lowercase sentence:')
+clientSocket.sendto(message.encode('utf-8'),(serverName,serverPort))  # 不设置encode是报错：TypeError: a bytes-like object is required, not 'str'
+modifiedMessage,serverAddress=clientSocket.recvfrom(2048)
+print(modifiedMessage)
+clientSocket.close()
+```
 
+UDPServer.py
 
+```python
+from socket import *
+serverPort=12003
+serverSocket=socket(AF_INET,SOCK_DGRAM)
+serverSocket.bind(('',serverPort))  #绑定端口
+print("The server is ready to receive")
+while 1 :
+    message,clientAdress=serverSocket.recvfrom(2048)
+    modifiedMessage=message.upper()
+    serverSocket.sendto(modifiedMessage,clientAdress)
+```
 
+`s.sendto(string[,flag],address)发送UDP数据。将数据发送到套接字，address是形式为（ipaddr，port）的元组，指定远程地址。返回值是发送的字节数。destPort的类型应该为int类型.
 
+### 2.8 TCP编程
 
+TCPClient.py
+
+```python
+from socket import *
+serverName='127.0.0.1'
+serverPort=11998
+clientSocket=socket(AF_INET,SOCK_STREAM)
+clientSocket.connect((serverName,serverPort))
+sentence=input('Input lowercase sentence:')
+clientSocket.send(sentence.encode('utf-8'))
+modifiedSentence=clientSocket.recv(1024)
+print('From server:',modifiedSentence)
+clientSocket.close()
+```
+
+TCPServer.py
+
+```python
+from socket import *
+serverPort=11998
+serverSocket=socket(AF_INET,SOCK_STREAM)
+serverSocket.bind(('',serverPort))
+serverSocket.listen(1)
+print("The server is ready to receive")
+while 1 :
+    connectionSocket,addr=serverSocket.accept()
+    sentence=connectionSocket.recv(1024)
+    capitalizedSentence=sentence.upper()
+    connectionSocket.send(capitalizedSentence)
+    connectionSocket.close()
+
+```
 
 
 
