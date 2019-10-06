@@ -136,6 +136,14 @@ TCP把数据看成一个无结构的、有序的字节流，序号是建立在�
 
 让发送方维护一个 **接收窗口** 的变量来提供流量控制。接收窗口用于给发送方一个指示：该接收方还有多少可用的缓存空间。
 
+#### 3.5.6 TCP连接管理
+
+![](F:\Desktop\Typora\Computer-Network\TCP三次握手.png)
+
+
+
+![](F:\Desktop\Typora\Computer-Network\TCP四次挥手.png)
+
 
 
 
