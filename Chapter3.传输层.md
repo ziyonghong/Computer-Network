@@ -144,8 +144,6 @@ TCP把数据看成一个无结构的、有序的字节流，序号是建立在�
 
 ![](F:\Desktop\Typora\Computer-Network\TCP四次挥手.png)
 
-
-
 ### 3.6拥塞控制原理
 
 #### 3.6.1 拥塞原因与代价
