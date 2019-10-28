@@ -166,7 +166,11 @@ TCP把数据看成一个无结构的、有序的字节流，序号是建立在�
 
 ### 3.7 TCP拥塞控制
 
+![](F:\Desktop\Typora\Computer-Network\TCP拥塞控制.png)
+
 **1.慢启动**
+
+
 
 **2.拥塞避免**
 
